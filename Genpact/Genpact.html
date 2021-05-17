@@ -1,0 +1,290 @@
+
+<div class="flex" style="width: 80%;">
+
+    <div class="bg">
+        
+        <span class="sort">Sort By</span>
+        
+        <button class="btn or">Name</button>
+        <button class="btn">Account</button>
+        <button class="btn">Balance</button>
+      
+        
+    
+    
+    
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Account</th>
+        <th>Balance</th>
+      </tr>
+      <tr>
+        <td>Norah Mcghee</td>
+        <td>IRA - 2340</td>
+        <td><div>
+            $5,175.36
+        </div>
+        <div class="red">-0.09% / $8,302.00</div>
+        </td>
+      </tr>
+      <tr>
+        <td>Alyx Maxwell</td>
+        <td>AAA - 1567</td>
+        <td><div>
+            $3,471,072.38
+        </div>
+        <div class="green">+20.29% / $1,305.29</div></td>
+      </tr>
+      <tr>
+        <td>Ezra Ritter</td>
+        <td>ROT - 5678</td>
+        <td><div>
+            $52,000,293.29
+        </div>
+        <div class="red">-0.01% / $2,504.49</div></td></td>
+      </tr>
+      <tr>
+    </table>
+    </div>
+    
+    <div style="width:40%">
+        
+    </div>
+    
+    </div>
+
+    <script>
+
+        
+users = [  
+ {  
+ id: "1",  
+ name: "Norah"  
+ },  
+ {  
+ id: "2",  
+ name: "Alyx"  
+ }  
+];  
+accounts = [  
+ {  
+ account: "IRA-4679",   user: "1",  
+ balance: "5175.36"   },  
+ {  
+ account: "AAA-3571",   user: "1",  
+ balance: "3471072.38"   },  
+ {  
+ account: "AAA-4671",   user: "1",  
+ balance: "138971.19"   },  
+ {  
+ account: "ROT-1687",   user: "2",  
+ balance: "2686.00"   },  
+ {  
+ account: "AAA-7894",   user: "2",  
+ balance: "68761.32"   },  
+ {  
+ account: "IRA-6818",   user: "2",  
+ balance: "564.67"   },  
+ {  
+ account: "IRA-6819",   user: "2",  
+ balance: "3564.67"   }  
+]; 
+
+
+
+
+
+function filterAllAcc(name,filter){
+
+/* BELOW FUNCTION IS A COMMON FUNCTION TO RETUN THE USER ID*/
+function getUserId(name_e){
+
+
+
+var return_id;
+
+for(var i=0;i<users.length;i++){
+    
+    
+    
+    if(users[i].name == name_e){
+        
+        return_id = users[i].id;
+    }
+}
+
+return return_id;
+
+}
+
+if(filter =="filterAllAcc"){
+ 
+ var id = getUserId(name);
+ var array = [];
+ 
+ for(var i=0; i<accounts.length;i++){
+     
+     
+     if(accounts[i].user == id){
+         
+         array.push(name + " | " +accounts[i].account+ " | " + accounts[i].balance)
+     }
+ }
+ 
+ console.log("A) filtered by Norah with all account types (ROT, IRA, AAA)  =" + array);
+    
+}
+
+else if (filter == "filter_accType"){
+    var array = [];
+    
+     for(var i=0; i<accounts.length;i++){
+         
+        //  array.push(accounts[i].account+ " | " + accounts[i].balance)
+            array.push(parseInt(accounts[i].balance));
+            
+            
+        
+     }
+     
+     array.sort();
+     
+     console.log("B) filtered by account type sorted by balance ascending  " + array);
+
+}
+
+else if (filter == "filterBalDes"){
+
+ var id = getUserId(name);
+ var array = [];
+ 
+ for(var i=0; i<accounts.length;i++){
+     
+     
+     if(accounts[i].user == id && accounts[i].account.includes("IRA")){
+         
+         array.push(accounts[i].balance)
+     }
+ }
+ 
+ array.sort().reverse();
+ 
+ console.log("C) filtered by Alyx with IRA account type; sorted by balance descending  =" + array);
+
+}
+
+else if(filter == "filter_alluser"){
+
+    var array = [];
+    
+    for(var i=0; i<accounts.length;i++){
+        
+       //  array.push(accounts[i].account+ " | " + accounts[i].balance)
+           array.push(parseInt(accounts[i].balance));
+           
+           
+       
+    }
+    
+    array.sort();
+    
+    console.log("D) filtered by All users; sorted by balance ascending " + array);
+
+
+}
+
+
+
+}
+
+filterAllAcc('Norah', "filterAllAcc");
+
+filterAllAcc('', "filter_accType");
+
+filterAllAcc('Alyx', "filterBalDes");
+
+filterAllAcc('', "filter_alluser");
+
+
+
+
+
+
+    
+    </script>
+
+    <style>
+            
+        
+.bg{
+    margin: 1%;
+    padding: 15px;
+    width:100%;
+    background: #343434;
+    border: 1px solid #343434;
+    border-radius:15px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.text{
+    color:#379acb;
+    font-size:bold;
+}
+td:nth-child(even) {
+ color:#379acb;
+ font-weight:bold;
+}
+
+.sort{
+    
+    color : darkgrey;
+    padding-right: 4px;
+}
+
+.red{
+    font-size:12px;
+    color:red;
+}
+.green{
+    font-size:12px;
+    color:green;
+}
+
+tr:nth-child(even) {
+  background-color: #eaeaea;
+}
+
+.or{
+    border-bottom: 4px solid orange !important;
+    margin-bottom:10px;
+    padding-top:4px;
+}
+
+.btn{
+    min-height: 25px;
+    border: none;
+    background : #565656;
+    color: white;
+}
+
+tr:nth-child(odd) {
+  background-color: #e2e2e2;
+}
+.fex{
+    margin-bottom: 20px;
+    display: flex;
+}
+    
+    </style>
